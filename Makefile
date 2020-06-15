@@ -1,4 +1,4 @@
-SOURCE="https://download.jetbrains.com/webide/PhpStorm-2019.3.tar.gz"
+SOURCE="https://download-cf.jetbrains.com/webide/PhpStorm-2020.1.2.tar.gz"
 DESTINATION="build.tar.bz2"
 OUTPUT="PhpStorm.AppImage"
 

@@ -11,7 +11,7 @@ all:
 	rm -rf AppDir/opt
 
 	mkdir --parents AppDir/opt/application
-	cp -r PhpStorm-193.5233.101/* AppDir/opt/application
+	cp -r PhpStorm-201.7846.90/* AppDir/opt/application
 
 	chmod +x AppDir/AppRun
 	export ARCH=x86_64 && bin/appimagetool.AppImage AppDir $(OUTPUT)

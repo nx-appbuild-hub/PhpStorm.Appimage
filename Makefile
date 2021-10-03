@@ -1,23 +1,37 @@
-SOURCE="https://download.jetbrains.com/webide/PhpStorm-2019.3.tar.gz"
-DESTINATION="build.tar.bz2"
-OUTPUT="PhpStorm.AppImage"
+# Copyright 2020 Alex Woroschilow (alex.woroschilow@gmail.com)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
+all: clean
+	mkdir --parents $(PWD)/build/Boilerplate.AppDir
+	wget --output-document=$(PWD)/build/build.tar.gz https://download-cdn.jetbrains.com/webide/PhpStorm-2021.2.2.tar.gz
 
-all:
-	echo "Building: $(OUTPUT)"
-	wget -O $(DESTINATION)  $(SOURCE)
+	tar -zxvf $(PWD)/build/build.tar.gz  -C $(PWD)/build/Boilerplate.AppDir/
+	cp --force --recursive $(PWD)/build/Boilerplate.AppDir/PhpStorm-*/* $(PWD)/build/Boilerplate.AppDir
+	rm -rf $(PWD)/build/Boilerplate.AppDir/PhpStorm-*
 
-	tar -zxvf $(DESTINATION)
-	rm -rf AppDir/opt
+	rm -f $(PWD)/build/Boilerplate.AppDir/*.desktop 		|| true
+	rm -f $(PWD)/build/Boilerplate.AppDir/*.png 		  	|| true
+	rm -f $(PWD)/build/Boilerplate.AppDir/*.svg 		  	|| true
+	rm -f $(PWD)/build/Boilerplate.AppDir/*.jpg 		  	|| true
 
-	mkdir --parents AppDir/opt/application
-	cp -r PhpStorm-193.5233.101/* AppDir/opt/application
+	cp --force $(PWD)/AppDir/*.svg 		  	$(PWD)/build/Boilerplate.AppDir 			|| true
+	cp --force $(PWD)/AppDir/*.desktop 		$(PWD)/build/Boilerplate.AppDir 			|| true
+	cp --force $(PWD)/AppDir/*.png 		  	$(PWD)/build/Boilerplate.AppDir 			|| true
+	cp --force $(PWD)/AppDir/AppRun 		$(PWD)/build/Boilerplate.AppDir 			|| true
 
-	chmod +x AppDir/AppRun
-	export ARCH=x86_64 && appimagetool AppDir $(OUTPUT)
+	chmod +x $(PWD)/build/Boilerplate.AppDir/AppRun
 
-	chmod +x $(OUTPUT)
+	export ARCH=x86_64 && $(PWD)/bin/appimagetool.AppImage $(PWD)/build/Boilerplate.AppDir $(PWD)/PhpStorm.AppImage
+	chmod +x $(PWD)/PhpStorm.AppImage
 
-	rm -rf PhpStorm-193.5233.101
-	rm -f $(DESTINATION)
-	rm -rf AppDir/opt
+clean: 
+	rm --recursive --force $(PWD)/build

@@ -6,6 +6,6 @@ Terminal=false
 X-MultipleArgs=false
 Type=Application
 Icon=phpstorm
-Categories=Development;Office;
+Categories=Development;
 StartupWMClass=PhpStorm
 StartupNotify=true

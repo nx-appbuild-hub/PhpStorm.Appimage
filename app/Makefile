@@ -19,7 +19,7 @@ all: clean init
 	$(PWD)/bin/Apprepo.AppImage --destination=$(PWD)/build appdir boilerplate \
 		libgdk-pixbuf2.0-0 libatk1.0-0 libatk-bridge2.0-0 libgtk2.0-0
 
-	wget --output-document=${PWD}/build/build.tar.gz https://download-cdn.jetbrains.com/webide/PhpStorm-2022.2.1.tar.gz
+	wget --output-document=${PWD}/build/build.tar.gz https://download-cdn.jetbrains.com/webide/PhpStorm-2022.2.3.tar.gz
 	tar -zxvf ${PWD}/build/build.tar.gz  --directory ${PWD}/build/
 
 	echo ''                                                           >> $(PWD)/build/Boilerplate.AppDir/AppRun
